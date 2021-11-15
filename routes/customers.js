@@ -2,12 +2,59 @@ const express = require('express');
 const router = express.Router();
 const sql = require('../db');
 
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
+const jsonParser = bodyParser.json();
 
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const sessionChecker = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.redirect('/auth');
+    } else {
+        next();
+    }
+};
 
-router.get("/", (req,res) => {
-        //not sure it this even has to be here
+router.get('/', function (req, res) {
+
+/*
+router.get('/', sessionChecker, function (req, res) {
+    res.send("hello");
+
+      res.render('main',
+        {layout: 'login', listExists: true});
+
+     */
 
 });
+router.post('/',urlencodedParser, function (req, res) {
+
+    console.log(req.body);
+    ssn=req.session;
+    sql.query('SELECT 1 firstname, lastname, mail, address, city from customer where mail=? and psw=md5(?)', [req.body.mail,req.body.psw],
+        function(error, results,fields) {
+            if (error) throw error;
+            if (results.length >= 1) {
+                console.log("customer:  ");
+                console.log(results);
+                const user = {
+                    mail: req.body.mail,
+                    firstname: results[0].firstname,
+                    lastname: results[0].lastname,
+                    address: results[0].address,
+                    city: results[0].city
+                };
+                ssn.user = user;
+                res.send(user);
+            } else {
+                console.log("wrong psw");
+            }
+
+        }
+    );
+
+});
+
 
 router.post("/",  (req, res) => {
     //console.log(req.body.city);
