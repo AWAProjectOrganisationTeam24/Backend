@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const jsonParser = bodyParser.json();
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 const sessionChecker = (req, res, next) => {
     if (req.session.user && req.cookies.user_sid) {
         res.redirect('/auth');
@@ -15,18 +16,6 @@ const sessionChecker = (req, res, next) => {
     }
 };
 
-router.get('/', function (req, res) {
-
-/*
-router.get('/', sessionChecker, function (req, res) {
-    res.send("hello");
-
-      res.render('main',
-        {layout: 'login', listExists: true});
-
-     */
-
-});
 router.post('/',urlencodedParser, function (req, res) {
 
     console.log(req.body);
@@ -57,11 +46,8 @@ router.post('/',urlencodedParser, function (req, res) {
 
 
 router.post("/",  (req, res) => {
-    //console.log(req.body.city);
-   // sql.query("SELECT * FROM restaurant WHERE city = $1", [req.body.city] , function (err, result) {
 
-    sql.query("SELECT * FROM customer", function (err, result) {
-
+    sql.query("SELECT * FROM restaurant WHERE city = ?", [req.body.city] , function (err, result) {
         if (err) throw err;
         res.send(result);
     });
@@ -74,7 +60,7 @@ router.post('/add-customer', (req,res) => {
 router.post('/edit-customer/:id', (req,res) => {
 
     //id comes from params not body
-        sql.query("UPDATE customer SET firstname = $1, lastname = $2, mail = $3, psw = $4, address = $5, city = $6 WHERE id_customer = $7",
+        sql.query("UPDATE customer SET firstname = ?, lastname = ?, mail = ?, psw = ?, address = ?, city = ? WHERE id_customer = ?",
         [req.body.firstname, req.body.lastname, req.body.mail, req.body.psw, req.body.address, req.body.city, req.params.id]);
 });
 

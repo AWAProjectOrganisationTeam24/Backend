@@ -1,20 +1,21 @@
-const sql = require("./db");
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.use(cors());
 
-const config = {
-    headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-    }
-};
+
+app.use(express.json());
+
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Headers', '*');
+    res.header('Access-Control-Allow-Methods', '*');
+    next();
+});
+
 
 const customerRouter = require('./routes/customers');
 const restaurantRouter = require('./routes/restaurants');
@@ -23,12 +24,25 @@ const orderRouter = require('./routes/orders');
 
 
 
-app.use('/', customerRouter);
-app.use('/restaurants', restaurantRouter);
+app.use('/customer', customerRouter);
+app.use('/', restaurantRouter);
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
 
+/*
+app.get('/', function(req,res) {
+   res.send('hi');
+});
 
+app.post("/",  function(req, res) {
+    console.log(req.body.city);
+     sql.query("SELECT * FROM restaurant WHERE city = ?", [req.body.city] , function (err, result) {
+
+        if (err) throw err;
+        res.send(result);
+    });
+});
+*/
 /*
 **
 **** SERVER CONFIG
