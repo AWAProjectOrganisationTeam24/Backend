@@ -16,10 +16,10 @@
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "prohairesis": "^1.2.5",
-    "sql": "^0.78.0"
+    "sql": "^0.78.0",
+    "cookie-parser": "^1.4.6"
   },
   "devDependencies": {
-    "cookie-parser": "^1.4.6",
     "dotenv": "^10.0.0",
     "inspirational-quotes": "^2.0.1"
   }
