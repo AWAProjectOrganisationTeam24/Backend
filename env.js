@@ -1,6 +1,2 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
 
-
-module.exports = {
-    CLEARDB_DATABASE_URL: process.env.CLEARDB_DATABASE_URL,
-};
