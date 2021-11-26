@@ -2,15 +2,19 @@ const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
 
+const cookieParser = require('cookie-parser');
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 
 
-app.use(express.json());
+app
+    .use(express.json())
+    .use(cookieParser());
 
 app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    //res.header('Access-Control-Allow-Origin', 'http:/localhost:3000');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', '*');
     res.header('Access-Control-Allow-Methods', '*');
     next();
