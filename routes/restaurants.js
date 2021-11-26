@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const sql = require('../db');
 
+const sql = require('../db');
 
 //RESTAURANT DEFAULT LIST
 router.get("/", function(req,res) {
@@ -12,12 +12,14 @@ router.get("/", function(req,res) {
 });
 
 //RESTAURANTS IN SEARCHED CITY
+/*
 router.post("/",  function(req, res) {
     sql.query("SELECT * FROM restaurant WHERE city = ?", [req.body.city] , function (err, result) {
         if (err) throw err;
         res.send(result);
     });
 });
+*/
 
 //ADD RESTAURANT
 router.post('/add-restaurant', (req,res) => {
