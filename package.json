@@ -30,5 +30,7 @@
     "save": "^2.4.0",
     "sql": "^0.78.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "multer": "^1.4.3"
+  }
 }
