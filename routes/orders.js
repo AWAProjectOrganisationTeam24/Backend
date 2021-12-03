@@ -3,6 +3,8 @@ const router = express.Router();
 const sql = require('../db');
 
 
+// Get all orders 
+
 
 //SHOW ORDERS
 router.get("/customer/:id",  (req, res) => {
