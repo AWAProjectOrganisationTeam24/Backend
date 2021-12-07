@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "multer": "^1.4.3"
+<<<<<<< HEAD
   },
   "repository": {
     "type": "git",
@@ -41,4 +42,7 @@
   },
   "homepage": "https://github.com/AWAProjectOrganisationTeam24/Backend#readme",
   "description": ""
+=======
+  }
+>>>>>>> c2afbb6d787c73d4f58bacd3dfc5a829b06c0e73
 }
