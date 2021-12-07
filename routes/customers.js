@@ -212,4 +212,12 @@ router.post('/edit-customer/:id', (req,res) => {
         [req.body.firstname, req.body.lastname, req.body.mail, req.body.psw, req.body.address, req.body.city, req.params.id]);
 });
 
+router.get('/view-customer/:id', (req,res) => {
+
+    sql.query("SELECT * FROM customer INNER JOIN restaurant ON customer.id_manager = restaurant.id_manager WHERE id_customer = ? ", [req.params.id] , function (err, result) {
+        if (err) throw err;
+        res.send(result);
+    });
+})
+
 module.exports = router;

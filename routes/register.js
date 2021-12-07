@@ -16,6 +16,7 @@ router.post('/', async (req, res, next) => {
     const salt = bcrypt.genSaltSync(6);
     const hashedPassword = bcrypt.hashSync(req.body.psw, salt);
 
+    //nefunguje
     sql.query(`SELECT * FROM customer WHERE mail = ?`, [req.body.mail], (err, results) => {
         if (err) throw err;
 

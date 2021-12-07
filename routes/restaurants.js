@@ -77,4 +77,11 @@ router.post('/edit-restaurant/:id', upload.single('image'),(req,res) => {
     }
 });
 
+router.get('/view-restaurant/:id', (req,res) => {
+    sql.query('SELECT * FROMW restaurant WHERE id_restaurant = ?', [req.params.id], (err,result) => {
+        if (err) throw err
+        res.send(result);
+    })
+})
+
 module.exports = router;

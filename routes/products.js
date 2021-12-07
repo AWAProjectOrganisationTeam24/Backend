@@ -6,6 +6,11 @@ const multer = require('multer')
 const path = require('path')
 const cors = require("cors");
 
+
+// Get all orders
+
+
+
 //use
 router.use(cors());
 router.use(express.static("./public"))
