@@ -44,14 +44,13 @@ const upload = multer({
     storage: storage
 });
 
-router.post('/add-restaurant', upload.single('image'),(req,res) => {
-        if (!req.file) {
+router.post('/add-restaurant/:id', upload.single('file'),(req,res) => {
+    if(!req.file) {
             console.log("No file upload");
         } else {
-            console.log(req.file.filename)
-            const imgsrc = 'http://127.0.0.1:3000/images/' + req.file.filename
-            sql.query("INSERT INTO restaurant (name, address, city, image, type, openHr) VALUES (?, ?, ?, ?, ?, ?)",
-                [req.body.name, req.body.address, req.body.city, imgsrc, req.body.type, req.body.openHr], (err, result) => {
+            const imgsrc = req.file.filename;
+            sql.query("INSERT INTO restaurant (name, address, id_manager, city, image, type, openHr) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                [req.body.name, req.body.address, req.params.id, req.body.city, imgsrc, req.body.type, req.body.openHr], (err, result) => {
                     if (err) throw err
                     console.log("file uploaded")
                 });
@@ -59,7 +58,8 @@ router.post('/add-restaurant', upload.single('image'),(req,res) => {
 });
 
 //EDIT RESTAURANT
-router.post('/edit-restaurant/:id', upload.single('image'),(req,res) => {
+router.post('/edit-restaurant/:id', upload.single('file'),(req,res) => {
+    console.log(req.body);
     if (!req.file) {
         sql.query("UPDATE restaurant SET name = ?, address = ?, city = ?, type = ?, openHr = ? WHERE id_restaurant = ?",
             [req.body.name, req.body.address, req.body.city, req.body.type, req.body.openHr, req.params.id], (err, result) => {
@@ -78,7 +78,7 @@ router.post('/edit-restaurant/:id', upload.single('image'),(req,res) => {
 });
 
 router.get('/view-restaurant/:id', (req,res) => {
-    sql.query('SELECT * FROMW restaurant WHERE id_restaurant = ?', [req.params.id], (err,result) => {
+    sql.query('SELECT * FROM restaurant WHERE id_manager = ?', [req.params.id], (err,result) => {
         if (err) throw err
         res.send(result);
     })
