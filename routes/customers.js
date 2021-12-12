@@ -131,7 +131,7 @@ router.get('/view-customer/:id',passport.authenticate('jwt', { session: false })
     (req,res) => {
 
     sql.query("SELECT * FROM customer WHERE id_customer = ? ", [req.params.id] , function (err, result) {
-        if (err) throw err;
+  
         console.log(result);
         res.send(result);
     });
