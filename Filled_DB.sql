@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Ned 12. pro 2021, 13:58
+-- Vytvořeno: Ned 12. pro 2021, 22:26
 -- Verze serveru: 10.4.18-MariaDB
 -- Verze PHP: 8.0.3
 
@@ -82,9 +82,14 @@ INSERT INTO `orders` (`id_order`, `id_restaurant`, `id_customer`, `price`, `time
 (2, 3, 3, 130, '10:34:27', '2021-11-16', 'Delivered', 'Sushi set Maki', 1, ''),
 (3, 3, 8, 350, '10:06:38', '2021-11-17', 'Delivered', 'Sushi box', 1, ''),
 (4, 2, 9, 790, '17:45:17', '2021-11-15', 'Delivered', 'Kebab roll', 1, ''),
-(5, 2, 11, 395, '00:17:54', '2021-12-05', 'ordered', 'Kebab roll', 1, ''),
+(5, 2, 11, 395, '00:17:54', '2021-12-05', 'Received', 'Kebab roll', 1, ''),
 (6, 2, 11, 395, '00:22:22', '2021-12-03', 'ordered', 'Kebab roll', 1, ''),
-(12, 2, 11, 395, '01:00:20', '2021-12-04', 'ordered', 'Kebab roll', 1, '');
+(12, 2, 11, 395, '01:00:20', '2021-12-04', 'ordered', 'Kebab roll', 1, ''),
+(13, 3, 11, 260, '21:07:16', '0000-00-00', 'ordered', 'Sushi set Maki', 1, ''),
+(14, 2, 11, 395, '21:17:38', '0000-00-00', 'ordered', 'Kebab roll', 1, ''),
+(15, 2, 11, 395, '21:17:58', '0000-00-00', 'ordered', 'Kebab roll', 1, ''),
+(16, 2, 11, 395, '21:18:25', '0000-00-00', 'ordered', 'Kebab roll', 1, ''),
+(17, 2, 11, 395, '21:21:22', '0000-00-00', 'ordered', 'Kebab roll', 1, '');
 
 -- --------------------------------------------------------
 
@@ -185,7 +190,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT pro tabulku `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pro tabulku `products`
