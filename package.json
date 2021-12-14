@@ -27,10 +27,11 @@
     "passport-jwt": "^4.0.0",
     "prohairesis": "^1.2.5",
     "save": "^2.4.0",
-    "sql": "^0.78.0"
+    "sql": "^0.78.0",
+    "multer": "^1.4.3"
   },
   "devDependencies": {
-    "multer": "^1.4.3"
+
   },
   "repository": {
     "type": "git",
